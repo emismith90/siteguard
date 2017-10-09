@@ -5,7 +5,7 @@ argv = require('yargs').argv;
 
 if(!argv.sitemap) {
     console.log('No sitemap configuration.');    
-    return;
+    return process.exit(1);
 }
 console.log('Guarding from ' + argv.sitemap + ' ...');
 https.get(argv.sitemap, function(res) {
@@ -30,6 +30,11 @@ https.get(argv.sitemap, function(res) {
                         console.log(result);
                         if(result.successes.length === result.total)  {
                             console.log('All links are safe and sound :)');
+                            process.exit(0);
+                        }
+                        else{
+                            console.log('Some links have died ;(');
+                            process.exit(1);
                         }
                     }).guardAllLinks();
                 }
