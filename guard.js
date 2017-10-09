@@ -17,6 +17,7 @@ https.get(argv.sitemap, function(res) {
     });
     res.on('error', function(err) {
         console.log('Got error: ' + err.message);
+        process.exit(1);
     });
     res.on('end', function() {
         var parser = new xml2js.Parser();
