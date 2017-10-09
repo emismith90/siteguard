@@ -7,6 +7,7 @@ if(!argv.sitemap) {
     console.log('No sitemap configuration.');    
     return process.exit(1);
 }
+
 console.log('Guarding from ' + argv.sitemap + ' ...');
 https.get(argv.sitemap, function(res) {
     console.log('Reading sitemap...');
@@ -23,7 +24,8 @@ https.get(argv.sitemap, function(res) {
         var parser = new xml2js.Parser();
         parser.parseString(response_data, function(err, result) {
             if (err) {
-                console.log('Got error: ' + err.message);
+                console.log('Got error when parse: ' + err.message);
+                process.exit(1);
             } else {
                 if(result && result.urlset && result.urlset.url) {
                     console.log('Got ' + result.urlset.url.length + ' links...');

@@ -2,7 +2,7 @@
   "name": "siteguard",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "guard.js",
   "scripts": {
     "guard": "node guard.js --sitemap=https://www.bisnode.se/sitemap.xml",
     "test": "echo \"Error: no test specified\" && exit 1"
